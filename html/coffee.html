@@ -8,7 +8,8 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="咖啡搭配組合｜美廉社">
   <meta property="og:description" content="大杯咖啡搭配茶葉蛋超值組合，每日限量供應！">
-  <meta property="og:image" content="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/咖啡搭配.jpg">
+  <!-- ✅ 使用 GitHub Pages 的圖片網址，檔名用英文 -->
+  <meta property="og:image" content="https://anzuac.github.io/line-preview/html/PNG/coffee_promo.jpg">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="600">
   <meta name="twitter:card" content="summary_large_image">
@@ -17,9 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     /* 手機預設 */
     body {
@@ -37,7 +36,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url("https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/Simple_Mart_logo.png")
+      background: url("https://anzuac.github.io/line-preview/html/PNG/Simple_Mart_logo.png")
                   no-repeat center center;
       background-size: 90vw;
       opacity: 0.06;
@@ -147,55 +146,21 @@
 
     /* 平板版 */
     @media (min-width: 768px) {
-      body::before {
-        background-size: 55%;
-      }
-
-      .container {
-        max-width: 780px;
-        padding: 18px;
-      }
-
-      .store-logo {
-        width: 50px;
-        height: 50px;
-        padding: 6px;
-      }
-
-      .store-name-main {
-        font-size: 20px;
-      }
-
-      .title {
-        font-size: 24px;
-      }
-
-      .item-name {
-        font-size: 18px;
-      }
-
-      .item-price {
-        font-size: 20px;
-      }
+      body::before { background-size: 55%; }
+      .container { max-width: 780px; padding: 18px; }
+      .store-logo { width: 50px; height: 50px; padding: 6px; }
+      .store-name-main { font-size: 20px; }
+      .title { font-size: 24px; }
+      .item-name { font-size: 18px; }
+      .item-price { font-size: 20px; }
     }
 
     /* PC 版 */
     @media (min-width: 1200px) {
-      body {
-        background: #f4edf7;
-      }
-
-      body::before {
-        background-size: 40%;
-      }
-
-      .container {
-        max-width: 900px;
-      }
-
-      .title {
-        font-size: 26px;
-      }
+      body { background: #f4edf7; }
+      body::before { background-size: 40%; }
+      .container { max-width: 900px; }
+      .title { font-size: 26px; }
     }
   </style>
 </head>
@@ -204,19 +169,19 @@
   <div class="container">
     <div class="card">
 
-      <!-- 超商抬頭 -->
+      <!-- 抬頭區 -->
       <div class="store-header">
         <img class="store-logo"
-             src="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/Simple_Mart_logo.png">
+             src="https://anzuac.github.io/line-preview/html/PNG/Simple_Mart_logo.png">
         <div>
           <div class="store-name-main">美廉社 Simple Mart</div>
           <div class="store-name-sub">限時超值搭配組合</div>
         </div>
       </div>
 
-      <!-- 海報主圖 -->
+      <!-- 主圖：用剛剛那張 DM 圖 -->
       <img class="banner-image"
-           src="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/咖啡搭配.jpg">
+           src="https://anzuac.github.io/line-preview/html/PNG/coffee_promo.jpg">
 
       <!-- 內容 -->
       <div class="content">
@@ -224,10 +189,9 @@
         <div class="subtitle">大杯經典咖啡搭配熱騰騰茶葉蛋，美味又超值。</div>
 
         <div class="item-list">
-
           <div class="item-row">
             <div>
-              <div class="item-name">大杯美式咖啡</div>
+              <div class="item-name">大杯經典美式咖啡</div>
               <div class="item-detail">＋ 茶葉蛋兩顆</div>
             </div>
             <div class="item-price">39元</div>
@@ -235,12 +199,11 @@
 
           <div class="item-row">
             <div>
-              <div class="item-name">大杯拿鐵咖啡</div>
+              <div class="item-name">大杯鮮奶拿鐵咖啡</div>
               <div class="item-detail">＋ 茶葉蛋兩顆</div>
             </div>
             <div class="item-price">49元</div>
           </div>
-
         </div>
 
         <div class="note">※ 商品以門市實際供應為主，數量有限售完為止。</div>
