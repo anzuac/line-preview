@@ -8,30 +8,25 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="咖啡搭配組合｜美廉社">
   <meta property="og:description" content="大杯咖啡搭配茶葉蛋超值組合，每日限量供應！">
-  <!-- ✅ 使用 GitHub Pages 的圖片網址，檔名用英文 -->
   <meta property="og:image" content="https://anzuac.github.io/line-preview/html/PNG/coffee_promo.jpg">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="600">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- 手機 RWD -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     * { box-sizing: border-box; }
 
-    /* 手機預設 */
     body {
       margin: 0;
       padding: 0;
-      font-family: "Microsoft JhengHei", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Microsoft JhengHei", system-ui, sans-serif;
       background: #f7f3f9;
       color: #333;
       min-height: 100vh;
       position: relative;
     }
 
-    /* 背景 LOGO 水印 */
     body::before {
       content: "";
       position: fixed;
@@ -52,7 +47,7 @@
     }
 
     .card {
-      background: white;
+      background: #fff;
       border-radius: 14px;
       border: 2px solid #b2128b;
       overflow: hidden;
@@ -64,37 +59,25 @@
       align-items: center;
       padding: 10px 14px;
       background: linear-gradient(90deg, #b2128b, #e22fb0);
-      color: white;
+      color: #fff;
     }
 
     .store-logo {
       width: 40px;
       height: 40px;
-      background: white;
+      background: #fff;
       border-radius: 10px;
       padding: 4px;
       margin-right: 10px;
       object-fit: contain;
     }
 
-    .store-name-main {
-      font-size: 18px;
-      font-weight: 700;
-    }
+    .store-name-main { font-size: 18px; font-weight: 700; }
+    .store-name-sub { font-size: 12px; opacity: 0.9; }
 
-    .store-name-sub {
-      font-size: 12px;
-      opacity: 0.9;
-    }
+    .banner-image { width: 100%; display: block; }
 
-    .banner-image {
-      width: 100%;
-      display: block;
-    }
-
-    .content {
-      padding: 14px 16px 18px;
-    }
+    .content { padding: 14px 16px 18px; }
 
     .title {
       font-size: 20px;
@@ -120,21 +103,32 @@
       padding: 6px 0;
     }
 
-    .item-name {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .item-detail {
-      font-size: 12px;
-      color: #666;
-    }
+    .item-name { font-size: 16px; font-weight: 600; }
+    .item-detail { font-size: 12px; color: #666; }
 
     .item-price {
       font-size: 18px;
-      color: #d9534f;
       font-weight: 700;
+      color: #d9534f;
       margin-left: 6px;
+    }
+
+    /* 🔥 自帶杯大提醒區塊 */
+    .eco-box {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #ffeef9;
+      border: 2px solid #ff78c7;
+      text-align: center;
+      font-weight: 700;
+      font-size: 17px;
+      color: #b2128b;
+    }
+
+    .eco-box span {
+      font-size: 20px;
+      color: #ff2fa3;
     }
 
     .note {
@@ -144,7 +138,7 @@
       color: #999;
     }
 
-    /* 平板版 */
+    /* 平板 */
     @media (min-width: 768px) {
       body::before { background-size: 55%; }
       .container { max-width: 780px; padding: 18px; }
@@ -153,9 +147,11 @@
       .title { font-size: 24px; }
       .item-name { font-size: 18px; }
       .item-price { font-size: 20px; }
+      .eco-box { font-size: 18px; }
+      .eco-box span { font-size: 22px; }
     }
 
-    /* PC 版 */
+    /* PC */
     @media (min-width: 1200px) {
       body { background: #f4edf7; }
       body::before { background-size: 40%; }
@@ -169,7 +165,7 @@
   <div class="container">
     <div class="card">
 
-      <!-- 抬頭區 -->
+      <!-- 抬頭 -->
       <div class="store-header">
         <img class="store-logo"
              src="https://anzuac.github.io/line-preview/html/PNG/Simple_Mart_logo.png">
@@ -179,7 +175,7 @@
         </div>
       </div>
 
-      <!-- 主圖：用剛剛那張 DM 圖 -->
+      <!-- 主圖 -->
       <img class="banner-image"
            src="https://anzuac.github.io/line-preview/html/PNG/coffee_promo.jpg">
 
@@ -189,6 +185,8 @@
         <div class="subtitle">大杯經典咖啡搭配熱騰騰茶葉蛋，美味又超值。</div>
 
         <div class="item-list">
+
+          <!-- 原本價格組合 -->
           <div class="item-row">
             <div>
               <div class="item-name">大杯經典美式咖啡</div>
@@ -204,6 +202,29 @@
             </div>
             <div class="item-price">49元</div>
           </div>
+
+          <!-- 新增：濃萃美式 / 拿鐵單售優惠 -->
+          <div class="item-row">
+            <div>
+              <div class="item-name">大杯濃萃美式</div>
+              <div class="item-detail">(單杯特價)</div>
+            </div>
+            <div class="item-price">29元</div>
+          </div>
+
+          <div class="item-row">
+            <div>
+              <div class="item-name">大杯拿鐵</div>
+              <div class="item-detail">(單杯特價)</div>
+            </div>
+            <div class="item-price">39元</div>
+          </div>
+
+        </div>
+
+        <!-- 🔥 自帶杯大提醒 -->
+        <div class="eco-box">
+          ♻️ 自帶杯 <span>再折 5 元</span>！
         </div>
 
         <div class="note">※ 商品以門市實際供應為主，數量有限售完為止。</div>
