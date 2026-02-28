@@ -138,23 +138,31 @@
 
   // ✅ 組合贈送詳細說明
   btnComboDetail.addEventListener('click', function () {
-    openModal('組合贈送詳細說明', `
-      <div style="line-height:1.8; font-size:15px;">
-        <div style="font-weight:900; margin-bottom:8px;">優惠方式說明</div>
-        1. 本活動贈送之商品金額，係以符合活動條件之商品組合中，依特價後金額計算，取最低價商品作為贈送商品。<br><br>
-        2. 即期品（指門市標示為出清商品者）不列入本活動贈送計算範圍，亦不參與贈送優惠。<br><br>
+    btnComboDetail.addEventListener('click', function () {
+  openModal('組合贈送詳細說明', `
+    <div style="line-height:1.8; font-size:15px;">
+      <div style="font-weight:900; margin-bottom:8px;">優惠方式說明</div>
+      1. 本活動贈送之商品金額，係以符合活動條件之商品組合中，依特價後金額計算，取最低價商品作為贈送商品。<br><br>
+      2. 即期品（指門市標示為出清商品者）不列入本活動贈送計算範圍，亦不參與贈送優惠。<br><br>
 
-        <div style="font-weight:900; margin:12px 0 6px 0;">計算範例說明</div>
-        例如：（39 + 40 + 40）= 119 元（三入特價）。使用本卡後，39 元商品為贈送商品；其餘兩件仍以三入特價方式計算。<br><br>
+      
+      <div style="font-weight:900; margin:12px 0 6px 0;">計算範例說明（符合 9 罐門檻）</div>
+      例如：消費者購買 9 罐符合活動之商品（以下金額皆以特價後金額為例）：<br>
+      （50 + 49 + 45 + 45 + 55 + 55 + 49 + 50 + 55）共 9 罐。<br><br>
 
-        <div style="font-weight:900; margin:12px 0 6px 0;">退貨說明</div>
-        3. 如辦理退貨後，剩餘商品數量未達 9 件活動門檻，則不適用本卡贈送優惠，商品將維持原組合特價計算。<br><br>
-        4. 若因退貨導致實際付款金額不足原應付金額者，消費者須補足差額後方可完成退貨程序。<br><br>
+      依本活動規則，系統將以該 9 罐中「最低價」作為贈送商品：<br>
+      ・最低價為 <strong>45 元</strong>，因此其中 <strong>1 罐 45 元</strong> 為贈送商品。<br>
+      ・其餘 8 罐仍依原本特價/組合特價規則計算。<br>
+      ・若最低價同價有多罐（本例 45 元有 2 罐），以系統判定其中 1 罐作為贈送商品。<br><br>
 
-        本活動實際優惠計算方式依門市系統判定及現場公告為準。
-      </div>
-    `);
-  });
+      <div style="font-weight:900; margin:12px 0 6px 0;">退貨說明</div>
+      3. 如辦理退貨後，剩餘商品數量未達 9 件活動門檻，則不適用本卡贈送優惠，商品將維持原組合特價計算。<br><br>
+      4. 若因退貨導致實際付款金額不足原應付金額者，消費者須補足差額後方可完成退貨程序。<br><br>
+
+      本活動實際優惠計算方式依門市系統判定及現場公告為準。
+    </div>
+  `);
+});
 
   // 關閉行為
   btnClose.addEventListener('click', closeModal);
