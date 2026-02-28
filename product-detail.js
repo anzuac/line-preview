@@ -118,7 +118,7 @@
     { name: 'Sour3沙瓦水蜜桃風味', size: '350ml', deal: '特價2件69', type: 'promo' },
 
     { name: '日本小確幸富士蘋果風味氣泡酒', size: '350ml', deal: '特價49', type: 'promo' },
-    { name: '日本女王香檳白葡萄／葡萄無酒精啤酒', size: '350ml', deal: '特價29', type: 'promo' },
+ //   { name: '日本女王香檳白葡萄／葡萄無酒精啤酒', size: '350ml', deal: '特價29', type: 'promo' },
 
     { name: '法國皇家拉格啤酒5.0%', size: '330ml', deal: '特價3件72', type: 'promo' },
     { name: '西班牙米斯特4.8%啤酒', size: '330ml', deal: '特價3件75', type: 'promo' },
