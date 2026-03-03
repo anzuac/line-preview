@@ -100,7 +100,7 @@
     { name: 'KIRIN本搾調酒鳳梨', size: '500ml', deal: '特價39', type: 'promo' },
     { name: '世界記行山梨白桃沙瓦6%', size: '500ml', deal: '特價52', type: 'promo' },
 
-    { name: '波蘭海納棕熊強啤酒10%', size: '500ml', deal: '特價45', type: 'promo', excludePhase1: true, note: '3/3以前不加入活動' },
+    //{ name: '波蘭海納棕熊強啤酒10%', size: '500ml', deal: '特價45', type: 'promo', excludePhase1: true, note: '3/3以前不加入活動' },
 
     { name: '波蘭愛德美IPA4.7%啤酒', size: '500ml', deal: '特價3件129', type: 'promo' },
     { name: '波蘭城市之旅5.0啤酒', size: '500ml', deal: '特價3件119', type: 'promo' },
