@@ -4,20 +4,53 @@
   <meta charset="UTF-8">
   <title>加購</title>
 
-  <!-- 給 LINE / FB / Twitter 的 OGP 標籤 -->
+  <!-- OGP -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="加購">
   <meta property="og:description" content="消費不限 金額即可加購">
 
-  <!-- LINE 顯示的縮圖（你的 PNG 資料夾裡的檔案） -->
-  <meta property="og:image" content="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/1774939422107.gif">
+  <!-- ⭐ 關鍵：改成固定檔名 + 可變版本號 -->
+  <meta property="og:image" content="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/purchase-current.gif?v=INIT">
   <meta property="og:image:width" content="800">
   <meta property="og:image:height" content="600">
 
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="加購">
+  <meta name="twitter:description" content="消費不限 金額即可加購">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/purchase-current.gif?v=INIT">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #fff;
+      text-align: center;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .time {
+      margin-top: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-  <!-- 頁面顯示圖片 -->
-  <img src="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/1774939422107.gif" style="max-width:100%;">
+  <div class="wrap">
+    <!-- 顯示圖片（同樣帶版本） -->
+    <img src="https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/purchase-current.gif?v=INIT">
+    <div class="time">更新時間：INIT</div>
+  </div>
 </body>
 </html>
