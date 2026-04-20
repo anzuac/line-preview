@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
-BASE_IMAGE_URL = "https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/1774939422107.gif"
+BASE_IMAGE_URL = "https://raw.githubusercontent.com/anzuac/line-preview/main/html/PNG/purchase-current.gif"
 TEMPLATE_PATH = Path("html/purchase-template.html")
 OUTPUT_PATH = Path("html/purchase7.html")
 
