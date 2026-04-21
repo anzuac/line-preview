@@ -2,7 +2,7 @@ name: Update Purchase Preview
 
 on:
   schedule:
-  - cron: "*/5 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -27,13 +27,15 @@ jobs:
       - name: Generate purchase image
         run: python scripts/generate_purchase_image.py
 
-      - name: Build purchase page
+      - name: Update purchase page
         run: python scripts/build_purchase_page.py
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add html/purchase7.html html/PNG/purchase-current.gif
+          git commit -m "Auto update purchase preview" || echo "No changes to commit"
+          git push          git add html/purchase7.html html/PNG/purchase-current.gif
           git commit -m "Auto update purchase page" || echo "No changes to commit"
           git push
