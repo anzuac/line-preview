@@ -2,17 +2,18 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta, timezone
 
-OUTPUT_DIR = Path("html/PNG")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-OUTPUT_PATH = OUTPUT_DIR / "purchase-current.gif"
+BASE_IMAGE_PATH = Path("html/PNG/purchase-base.png")
+OUTPUT_PATH = Path("html/PNG/purchase-current.png")
 
 WIDTH = 800
 HEIGHT = 600
 
+# 台灣時區
 tz = timezone(timedelta(hours=8))
 now = datetime.now(tz)
 
+# ===== 活動週期設定 =====
+# 以 2026/04/28 23:59 為基準，之後每 14 天一個結束時間
 base_end = datetime(2026, 4, 28, 23, 59, 0, tzinfo=tz)
 cycle_days = 14
 
@@ -27,78 +28,77 @@ if remaining.total_seconds() > 0:
     days = remaining.days
     hours = remaining.seconds // 3600
     minutes = (remaining.seconds % 3600) // 60
-    countdown_text = f"本期倒數 {days}天 {hours}時 {minutes}分"
+    countdown_text = f"倒數 {days}天 {hours}時 {minutes}分"
 else:
-    countdown_text = "活動已結束"
+    countdown_text = "本期活動已結束"
 
-end_text = end_time.strftime("截止時間 %m/%d %H:%M")
+end_text = end_time.strftime("本期截止 %m/%d %H:%M")
 
 total_seconds = (end_time - start_time).total_seconds()
 elapsed_seconds = (now - start_time).total_seconds()
 progress = max(0.0, min(1.0, elapsed_seconds / total_seconds if total_seconds else 0.0))
+progress_percent = int(progress * 100)
 
-img = Image.new("RGB", (WIDTH, HEIGHT), (255, 244, 247))
-draw = ImageDraw.Draw(img)
+# ===== 讀取底圖 =====
+img = Image.open(BASE_IMAGE_PATH).convert("RGBA")
+img = img.resize((WIDTH, HEIGHT))
 
-# 改這裡：明確指定支援中文的字型
-font_paths = [
+overlay = Image.new("RGBA", img.size, (255, 255, 255, 0))
+draw = ImageDraw.Draw(overlay)
+
+# ===== 中文字型 =====
+font_candidates = [
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
 ]
 
 font_path = None
-for fp in font_paths:
+for fp in font_candidates:
     if Path(fp).exists():
         font_path = fp
         break
 
 if font_path:
-    title_font = ImageFont.truetype(font_path, 58)
-    subtitle_font = ImageFont.truetype(font_path, 30)
-    body_font = ImageFont.truetype(font_path, 24)
-    small_font = ImageFont.truetype(font_path, 20)
+    title_font = ImageFont.truetype(font_path, 28)
+    body_font = ImageFont.truetype(font_path, 22)
+    small_font = ImageFont.truetype(font_path, 18)
 else:
     title_font = ImageFont.load_default()
-    subtitle_font = ImageFont.load_default()
     body_font = ImageFont.load_default()
     small_font = ImageFont.load_default()
 
-draw.rounded_rectangle((24, 24, 776, 576), radius=30, fill=(255, 255, 255), outline=(239, 199, 214), width=4)
-draw.rounded_rectangle((60, 60, 740, 190), radius=26, fill=(255, 223, 233))
+# ===== 動態資訊卡片位置 =====
+# 這塊先放在圖右下，避開主要商品與價格
+panel_x1, panel_y1 = 430, 470
+panel_x2, panel_y2 = 780, 585
 
-draw.text((400, 105), "加購", fill=(145, 35, 78), font=title_font, anchor="mm")
-draw.text((400, 162), "消費不限金額即可加購", fill=(120, 55, 78), font=subtitle_font, anchor="mm")
+draw.rounded_rectangle(
+    (panel_x1, panel_y1, panel_x2, panel_y2),
+    radius=18,
+    fill=(255, 255, 255, 220),
+    outline=(220, 220, 220, 255),
+    width=2
+)
 
-draw.rounded_rectangle((70, 225, 730, 520), radius=24, fill=(255, 248, 250), outline=(235, 210, 220), width=3)
+# 截止時間
+draw.text((605, 492), end_text, fill=(60, 60, 60, 255), font=body_font, anchor="mm")
 
-lines = [
-    "本期活動資訊",
-    "• 消費不限金額即可加購",
-    "• 依店內當日公告為主",
-    "• 數量有限，售完為止",
-]
+# 倒數文字
+countdown_color = (220, 20, 60, 255) if remaining.days <= 2 else (200, 40, 80, 255)
+draw.text((605, 525), countdown_text, fill=countdown_color, font=title_font, anchor="mm")
 
-y = 260
-for line in lines:
-    draw.text((110, y), line, fill=(80, 50, 60), font=body_font)
-    y += 48
-
-draw.text((400, 440), end_text, fill=(110, 110, 110), font=body_font, anchor="mm")
-
-countdown_color = (220, 50, 80) if remaining.days <= 2 else (190, 60, 90)
-draw.text((400, 478), countdown_text, fill=countdown_color, font=subtitle_font, anchor="mm")
-
-bar_left = 130
-bar_top = 520
-bar_right = 670
-bar_bottom = 548
-bar_radius = 16
+# 進度條
+bar_left = 470
+bar_top = 545
+bar_right = 740
+bar_bottom = 565
+bar_radius = 10
 
 draw.rounded_rectangle(
     (bar_left, bar_top, bar_right, bar_bottom),
     radius=bar_radius,
-    fill=(238, 229, 233)
+    fill=(235, 235, 235, 255)
 )
 
 fill_width = int((bar_right - bar_left) * progress)
@@ -106,14 +106,17 @@ if fill_width > 0:
     draw.rounded_rectangle(
         (bar_left, bar_top, bar_left + fill_width, bar_bottom),
         radius=bar_radius,
-        fill=(232, 96, 139)
+        fill=(255, 80, 120, 255)
     )
 
-progress_percent = int(progress * 100)
-draw.text((400, 562), f"本期進度 {progress_percent}%", fill=(130, 100, 110), font=small_font, anchor="mm")
+draw.text((605, 578), f"本期進度 {progress_percent}%", fill=(80, 80, 80, 255), font=small_font, anchor="mm")
 
-img.save(OUTPUT_PATH, format="GIF")
+# ===== 合成並輸出 PNG =====
+result = Image.alpha_composite(img, overlay).convert("RGB")
+result.save(OUTPUT_PATH, format="PNG")
+
 print(f"Generated: {OUTPUT_PATH}")
-print(f"Current cycle: {start_time} ~ {end_time}")
+print(f"Base image: {BASE_IMAGE_PATH}")
+print(f"Cycle: {start_time} ~ {end_time}")
 print(f"Countdown: {countdown_text}")
 print(f"Progress: {progress_percent}%")
