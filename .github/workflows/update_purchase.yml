@@ -1,0 +1,44 @@
+name: Update Purchase Page
+
+on:
+  push:
+    paths:
+      - 'Line/PNG/purchase-source.png'
+      - 'Line/scripts/process_purchase.py'
+      - 'Line/scripts/update_purchase_html.py'
+      - 'Line/purchase7.html'
+      - '.github/workflows/update_purchase.yml'
+  workflow_dispatch:
+
+jobs:
+  update-purchase:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pillow
+
+      - name: Process purchase image
+        run: python Line/scripts/process_purchase.py
+
+      - name: Update purchase HTML
+        run: python Line/scripts/update_purchase_html.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Line/purchase7.html Line/PNG/purchase-current.png
+          git commit -m "Auto update purchase page" || echo "No changes to commit"
+          git push
