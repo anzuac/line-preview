@@ -8,8 +8,8 @@ BASE_IMAGE_URL = "https://raw.githubusercontent.com/anzuac/line-preview/main/htm
 tz = timezone(timedelta(hours=8))
 now = datetime.now(tz)
 
-# 正式版：每天同一個版本
-version = now.strftime("%Y%m%d")
+# 每小時更新，版本帶到小時即可
+version = now.strftime("%Y%m%d%H")
 updated_at = now.strftime("%Y-%m-%d %H:%M:%S")
 
 image_url = f"{BASE_IMAGE_URL}?v={version}"
